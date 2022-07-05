@@ -12,6 +12,7 @@ export interface Group {
 	publicId: string;
 	name: string;
 	country: string;
+	users: User[];
 }
 
 export type ResourceTypes =
@@ -36,17 +37,6 @@ export const config: Config<ResourceTypes> =
 					properties: [
 						"firstName",
 						"lastName",
-					],
-				},
-				{
-					name: "group2",
-					properties: [
-						"country",
-					],
-				},
-				{
-					name: "group3",
-					properties: [
 						{
 							groups: [
 								"publicId",
@@ -55,6 +45,23 @@ export const config: Config<ResourceTypes> =
 						},
 					],
 				},
+				{
+					name: "group2",
+					properties: [
+						"country",
+					],
+				},
+				// {
+				// 	name: "group3",
+				// 	properties: [
+				// 		{
+				// 			groups: [
+				// 				"publicId",
+				// 				"country",
+				// 			],
+				// 		},
+				// 	],
+				// },
 			],
 		},
 		group: {

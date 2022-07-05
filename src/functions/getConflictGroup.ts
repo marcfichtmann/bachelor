@@ -2,6 +2,7 @@ import {
 	Config,
 	StringIdexed,
 } from "../types/common";
+import { RecursivePartial } from "../types/recursivePartial";
 
 export function getConflictGroups(
 	patch: StringIdexed<string>,
@@ -40,7 +41,7 @@ export function getUpdatedDataGroups<
 	TResourceTypes extends string,
 	TResource,
 >(
-	patch: Partial<TResource>,
+	patch: RecursivePartial<TResource>,
 	configuration: Config<TResourceTypes>[TResourceTypes],
 ): string[] {
 	const patchKeys =

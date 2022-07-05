@@ -33,11 +33,35 @@ const defaultUser: User = {
 			country: "en",
 			name: "group1",
 			publicId: "01",
+			users: [],
 		},
 		{
 			country: "en",
 			name: "group2",
 			publicId: "02",
+			users: [
+				{
+					country: "de",
+					firstName: "max",
+					lastName:
+						"mustermann",
+					publicId: "1",
+					groups: [
+						{
+							country: "en",
+							name: "group1",
+							publicId: "01",
+							users: [],
+						},
+						{
+							country: "en",
+							name: "group2",
+							publicId: "02",
+							users: [],
+						},
+					],
+				},
+			],
 		},
 	],
 };
@@ -210,6 +234,34 @@ const testCases: TestCase<Resource>[] =
 				},
 			},
 			expected: false,
+		},
+		{
+			description:
+				"update with conflict in Relationship",
+			input: {
+				currentState: {
+					...defaultUser,
+					groups: [
+						{
+							...defaultUser
+								.groups[0],
+							publicId:
+								"0001",
+						},
+						defaultUser
+							.groups[1],
+					],
+				},
+				patch: {
+					data: {
+						firstName:
+							"test123",
+					},
+					hashes:
+						defaultUserHashes,
+				},
+			},
+			expected: true,
 		},
 	];
 
