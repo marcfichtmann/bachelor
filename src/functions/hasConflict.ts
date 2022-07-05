@@ -14,7 +14,10 @@ export function hasConflict<
 >(
 	patch: string,
 	currentState: TResource,
-	configuration: ConflictConfig<TResourceTypes>[TResourceTypes],
+	configuration: ConflictConfig<
+		TResourceTypes,
+		TResource
+	>[TResourceTypes],
 ): boolean {
 	const currentStateHashes =
 		createHashableObject(

@@ -1,6 +1,7 @@
 import {
 	config,
 	Resource,
+	ResourceTypes,
 	User,
 } from "../testdata/domainModel";
 import { StringIdexed } from "../types/common";
@@ -67,10 +68,10 @@ const defaultUser: User = {
 };
 
 const defaultUserHashes =
-	createHashableObject(
-		defaultUser,
-		config.user,
-	);
+	createHashableObject<
+		ResourceTypes,
+		Resource
+	>(defaultUser, config.user);
 
 const testCases: TestCase<Resource>[] =
 	[

@@ -28,52 +28,54 @@ export interface Resources {
 	group: Group[];
 }
 
-export const config: ConflictConfig<ResourceTypes> =
-	{
-		user: {
-			conflictGroups: [
-				{
-					name: "group1",
-					properties: [
-						"firstName",
-						"lastName",
-						{
-							groups: [
-								"publicId",
-								"country",
-							],
-						},
-					],
-				},
-				{
-					name: "group2",
-					properties: [
-						"country",
-					],
-				},
-				// {
-				// 	name: "group3",
-				// 	properties: [
-				// 		{
-				// 			groups: [
-				// 				"publicId",
-				// 				"country",
-				// 			],
-				// 		},
-				// 	],
-				// },
-			],
-		},
-		group: {
-			conflictGroups: [
-				{
-					name: "group1",
-					properties: [
-						"publicId",
-						"name",
-						"country",
-					],
-				},
-			],
-		},
-	};
+export const config: ConflictConfig<
+	ResourceTypes,
+	Resource
+> = {
+	user: {
+		conflictGroups: [
+			{
+				name: "group1",
+				properties: [
+					"firstName",
+					"lastName",
+					{
+						groups: [
+							"publicId",
+							"country",
+						],
+					},
+				],
+			},
+			{
+				name: "group2",
+				properties: [
+					"country",
+				],
+			},
+			// {
+			// 	name: "group3",
+			// 	properties: [
+			// 		{
+			// 			groups: [
+			// 				"publicId",
+			// 				"country",
+			// 			],
+			// 		},
+			// 	],
+			// },
+		],
+	},
+	group: {
+		conflictGroups: [
+			{
+				name: "group1",
+				properties: [
+					"publicId",
+					"name",
+					"country",
+				],
+			},
+		],
+	},
+};

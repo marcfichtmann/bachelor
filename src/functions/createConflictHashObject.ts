@@ -5,10 +5,13 @@ import {
 
 export function createHashableObject<
 	TResourceTypes extends string,
-	TResource,
+	TResource extends Object,
 >(
 	ressource: TResource,
-	config: ConflictConfig<TResourceTypes>[TResourceTypes],
+	config: ConflictConfig<
+		TResourceTypes,
+		TResource
+	>[TResourceTypes],
 ): StringIdexed<any> {
 	let object: StringIdexed<any> =
 		{};

@@ -1,5 +1,6 @@
 import {
 	ConflictConfig,
+	KeysOfUnion,
 	StringIdexed,
 } from "../types/common";
 import { RecursivePartial } from "../types/recursivePartial";
@@ -39,10 +40,13 @@ export function getConflictGroups(
 
 export function getUpdatedDataGroups<
 	TResourceTypes extends string,
-	TResource,
+	TResource extends Object,
 >(
 	patch: RecursivePartial<TResource>,
-	configuration: ConflictConfig<TResourceTypes>[TResourceTypes],
+	configuration: ConflictConfig<
+		TResourceTypes,
+		TResource
+	>[TResourceTypes],
 ): string[] {
 	const patchKeys =
 		Object.keys(patch);
@@ -70,7 +74,11 @@ export function getUpdatedDataGroups<
 							(obj) => {
 								group.properties.forEach(
 									(
-										groupProperty,
+										groupProperty:
+											| string
+											| StringIdexed<
+													string[]
+											  >,
 									) => {
 										Object.keys(
 											obj,
@@ -104,7 +112,7 @@ export function getUpdatedDataGroups<
 					} else {
 						if (
 							group.properties.includes(
-								patchKey,
+								patchKey as KeysOfUnion<TResource>,
 							)
 						) {
 							updatedDataGroups.push(
