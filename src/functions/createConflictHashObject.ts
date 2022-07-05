@@ -1,5 +1,5 @@
 import {
-	Config,
+	ConflictConfig,
 	StringIdexed,
 } from "../types/common";
 
@@ -8,7 +8,7 @@ export function createHashableObject<
 	TResource,
 >(
 	ressource: TResource,
-	config: Config<TResourceTypes>[TResourceTypes],
+	config: ConflictConfig<TResourceTypes>[TResourceTypes],
 ): StringIdexed<any> {
 	let object: StringIdexed<any> =
 		{};

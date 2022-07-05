@@ -8,7 +8,7 @@ export interface Patch<T> {
 	hashes: StringIdexed<string>;
 }
 
-export type Config<
+export type ConflictConfig<
 	TResourceTypes extends string,
 > = {
 	[key in TResourceTypes]: {

@@ -1,4 +1,4 @@
-import { Config } from "../types/common";
+import { ConflictConfig } from "../types/common";
 
 export interface User {
 	publicId: string;
@@ -28,7 +28,7 @@ export interface Resources {
 	group: Group[];
 }
 
-export const config: Config<ResourceTypes> =
+export const config: ConflictConfig<ResourceTypes> =
 	{
 		user: {
 			conflictGroups: [

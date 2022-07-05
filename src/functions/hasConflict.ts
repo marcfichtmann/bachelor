@@ -1,5 +1,5 @@
 import {
-	Config,
+	ConflictConfig,
 	Patch,
 } from "../types/common";
 import { createHashableObject } from "./createConflictHashObject";
@@ -14,7 +14,7 @@ export function hasConflict<
 >(
 	patch: string,
 	currentState: TResource,
-	configuration: Config<TResourceTypes>[TResourceTypes],
+	configuration: ConflictConfig<TResourceTypes>[TResourceTypes],
 ): boolean {
 	const currentStateHashes =
 		createHashableObject(

@@ -1,5 +1,5 @@
 import {
-	Config,
+	ConflictConfig,
 	StringIdexed,
 } from "../types/common";
 import { RecursivePartial } from "../types/recursivePartial";
@@ -42,7 +42,7 @@ export function getUpdatedDataGroups<
 	TResource,
 >(
 	patch: RecursivePartial<TResource>,
-	configuration: Config<TResourceTypes>[TResourceTypes],
+	configuration: ConflictConfig<TResourceTypes>[TResourceTypes],
 ): string[] {
 	const patchKeys =
 		Object.keys(patch);
