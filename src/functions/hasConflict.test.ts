@@ -1,9 +1,9 @@
-import { StringIdexed } from "../types/common";
 import {
-	User,
-	Resource,
 	config,
-} from "../types/domainModel";
+	Resource,
+	User,
+} from "../testdata/domainModel";
+import { StringIdexed } from "../types/common";
 import { RecursivePartial } from "../types/recursivePartial";
 import { createHashableObject } from "./createConflictHashObject";
 import { hasConflict } from "./hasConflict";

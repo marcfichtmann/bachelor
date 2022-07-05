@@ -1,4 +1,4 @@
-import { StringIdexed } from "./common";
+import { Config } from "../types/common";
 
 export interface User {
 	publicId: string;
@@ -27,26 +27,7 @@ export interface Resources {
 	group: Group[];
 }
 
-export interface Patch<T> {
-	data: Partial<T>;
-	hashes: StringIdexed<string>;
-}
-
-export type Config = {
-	[key in ResourceTypes]: {
-		conflictGroups: {
-			name: string;
-			properties: (
-				| string
-				| StringIdexed<
-						string[]
-				  >
-			)[];
-		}[];
-	};
-};
-
-export const config: Config =
+export const config: Config<ResourceTypes> =
 	{
 		user: {
 			conflictGroups: [

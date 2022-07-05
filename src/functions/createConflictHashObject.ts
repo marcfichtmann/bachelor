@@ -1,13 +1,14 @@
-import { StringIdexed } from "../types/common";
 import {
-	Resource,
 	Config,
-	ResourceTypes,
-} from "../types/domainModel";
+	StringIdexed,
+} from "../types/common";
 
-export function createHashableObject(
-	ressource: Resource,
-	config: Config[ResourceTypes],
+export function createHashableObject<
+	TResourceTypes extends string,
+	TResource,
+>(
+	ressource: TResource,
+	config: Config<TResourceTypes>[TResourceTypes],
 ): StringIdexed<any> {
 	let object: StringIdexed<any> =
 		{};
@@ -26,8 +27,10 @@ export function createHashableObject(
 	return object;
 }
 
-function createConflictGroupObject(
-	ressource: Resource,
+function createConflictGroupObject<
+	TResource extends StringIdexed<any>,
+>(
+	ressource: TResource,
 	group: {
 		name: string;
 		properties: (
@@ -81,7 +84,7 @@ function createConflictGroupObject(
 										)
 											? property.map(
 													(
-														obj,
+														obj: StringIdexed<any>,
 													) => {
 														let newObj: {
 															[
@@ -123,7 +126,7 @@ function createConflictGroupObject(
 													],
 													[indexProperty]:
 														property[
-															indexProperty as any
+															indexProperty as string
 														],
 											  },
 								};

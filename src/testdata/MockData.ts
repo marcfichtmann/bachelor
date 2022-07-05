@@ -1,4 +1,4 @@
-import { Resources } from "../types/domainModel";
+import { Resources } from "./domainModel";
 
 export const mockData: Resources =
 	{

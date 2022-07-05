@@ -1,26 +1,27 @@
 import {
-	Resource,
 	Config,
-	ResourceTypes,
 	Patch,
-} from "../types/domainModel";
+} from "../types/common";
 import { createHashableObject } from "./createConflictHashObject";
 import {
 	getConflictGroups,
 	getUpdatedDataGroups,
 } from "./getConflictGroup";
 
-export function hasConflict(
+export function hasConflict<
+	TResourceTypes extends string,
+	TResource,
+>(
 	patch: string,
-	currentState: Resource,
-	configuration: Config[ResourceTypes],
+	currentState: TResource,
+	configuration: Config<TResourceTypes>[TResourceTypes],
 ): boolean {
 	const currentStateHashes =
 		createHashableObject(
 			currentState,
 			configuration,
 		);
-	const patchObj: Patch<Resource> =
+	const patchObj: Patch<TResource> =
 		JSON.parse(patch);
 	if (
 		patchObj.hashes ===

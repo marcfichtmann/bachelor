@@ -1,11 +1,7 @@
-import { StringIdexed } from "../types/common";
 import {
 	Config,
-	Group,
-	Resource,
-	ResourceTypes,
-	User,
-} from "../types/domainModel";
+	StringIdexed,
+} from "../types/common";
 
 export function getConflictGroups(
 	patch: StringIdexed<string>,
@@ -40,9 +36,12 @@ export function getConflictGroups(
 	return conflictGroups;
 }
 
-export function getUpdatedDataGroups(
-	patch: Partial<Resource>,
-	configuration: Config[ResourceTypes],
+export function getUpdatedDataGroups<
+	TResourceTypes extends string,
+	TResource,
+>(
+	patch: Partial<TResource>,
+	configuration: Config<TResourceTypes>[TResourceTypes],
 ): string[] {
 	const patchKeys =
 		Object.keys(patch);
