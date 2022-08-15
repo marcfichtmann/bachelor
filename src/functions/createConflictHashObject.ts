@@ -64,24 +64,25 @@ function createConflictGroupObject<
 					],
 			};
 		} else {
+			const groupPropertyObject = groupProperty;
 			Object.keys(
-				groupProperty,
+				groupPropertyObject,
 			).forEach(
-				(propertyKey) =>
-					groupProperty[
-						propertyKey
+				(groupPropertyKey) =>
+				groupPropertyObject[
+						groupPropertyKey
 					].forEach(
 						(
-							indexProperty,
+								propertyKey
 						) => {
 							const property =
 								ressource[
-									propertyKey as keyof typeof ressource
+									groupPropertyKey as keyof typeof ressource
 								];
 							conflictGroupObject =
 								{
 									...conflictGroupObject,
-									[propertyKey]:
+									[groupPropertyKey]:
 										Array.isArray(
 											property,
 										)
@@ -102,8 +103,8 @@ function createConflictGroupObject<
 																value,
 															) => {
 																if (
-																	groupProperty[
-																		propertyKey
+																	groupPropertyObject[
+																		groupPropertyKey
 																	].indexOf(
 																		value,
 																	) !==
@@ -125,11 +126,11 @@ function createConflictGroupObject<
 											  )
 											: {
 													...conflictGroupObject[
-														propertyKey
+														groupPropertyKey
 													],
-													[indexProperty]:
+													[propertyKey]:
 														property[
-															indexProperty as string
+															propertyKey as string
 														],
 											  },
 								};
